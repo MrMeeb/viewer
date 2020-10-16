@@ -1,8 +1,6 @@
 <?php
-$servername = "10.0.0.124";
-$username = "viewer";
-$password = "Blah1324!";
-$db = "viewer";
+
+include "elements/creds.php";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $db);
