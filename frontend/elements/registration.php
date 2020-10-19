@@ -28,9 +28,7 @@ if (isset($_POST["sign-up-submit"])) {
 
             if ($conn->query($sql) === TRUE) {
 
-                $_SESSION['username'] = $username;
-                $_SESSION['success'] = "You are now logged in";
-                header('location: dashboard');
+                header("location: ../signin");
 
               } else {
                 echo "Error: " . $sql . "<br>" . $conn->error;
@@ -40,6 +38,7 @@ if (isset($_POST["sign-up-submit"])) {
         else {
 
             echo  "$username already exists <br>";
+
         }
 
 
@@ -62,6 +61,9 @@ if (isset($_POST["sign-in-submit"])) {
 
         while($row = $result->fetch_assoc()) {
 
+            $password = $row['password'];
+            $id = $row['used_id'];
+
             if (password_verify($password_1, $row['password'])) {
 
                     $_SESSION['username'] = $username;
@@ -77,6 +79,9 @@ if (isset($_POST["sign-in-submit"])) {
 
                         if ($conn->query($sql) === TRUE) {
 
+                            setcookie("user", $username, 0, "/");
+                            setcookie("hash", $password, 0, "/");
+                            setcookie("id", $id, 0, "/");
                             header('location: dashboard');
             
                           } else {
@@ -103,5 +108,17 @@ if (isset($_POST["sign-in-submit"])) {
         $usernameErr = "Username not recognised";
 
     }
+
+}
+
+//Get Token
+
+$curPageName = substr($_SERVER["SCRIPT_NAME"],strrpos($_SERVER["SCRIPT_NAME"],"/")+1);
+
+if ($curPageName === 'dashboard.php') {
+    
+    $username = $_COOKIE['user'];
+    $password = $_COOKIE['hash'];
+    $id = $_COOKIE['id'];
 
 }

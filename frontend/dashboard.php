@@ -6,6 +6,7 @@
   	header('location: signin');
   }
 ?>
+<?php include "elements/registration.php"?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -16,28 +17,53 @@
     </head>
     <body>
         <div id="mainBackground" class="mainBackground">
-            <div class="mainBackground-overlay">
+            <div class="mainBackground-overlay-no-filter">
 
                 <?php include "elements/nav2.php" ?>
 
-                <div class="d-flex flex-column align-items-center mt-5">
-                    <div id="movie-search-container" class="input-group" style="max-width: 600px">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text prepend"></span>
-                        </div>
-                        <input type="text" class="form-control movie-search" id="movie-search-input" placeholder="Movie Title">
-                        <div class="input-group-append">
-                            <span id="movie-search-status" onclick="search()" class="input-group-text append btn btn-primary btn-primary-append"><i class="fas fa-search"></i></span>
+                <div id="tabs-parent-container" class="d-flex flex-column align-items-center m-4">
+                    <div id="tabs-container" class="tabs-container">
+                        <ul class="nav nav-tabs nav-tabs-custom nav-justified" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="watch-tab" data-toggle="tab" href="#watch" role="tab" aria-controls="watch" aria-selected="true">To Watch</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="watched-tab" data-toggle="tab" href="#watched" role="tab" aria-controls="watched" aria-selected="false">Watched</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content mt-4" id="myTabContent">
+                            <div class="tab-pane fade show active" id="watch" role="tabpanel" aria-labelledby="watch-tab">
+                                <?php include 'elements/watch.php'?>
+                            </div>
+                            <div class="tab-pane fade" id="watched" role="tabpanel" aria-labelledby="watched-tab">
+                                <?php include 'elements/watched.php'?>
+                            </div>
                         </div>
                     </div>
-                    <div id="movie-search-feedback" class="mx-2" style="display: block"></div>
-                </div>
-                
-                
-                
+                </div>               
             </div>
         </div>
 
+        <!-- Modal -->
+        <div class="modal fade" id="add-movie-watch-modal" tabindex="-1" role="dialog" aria-labelledby="add-movie-watch-modal-label" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="add-movie-watch-modal-label">Add movie</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div id="watch-search-results-category" class="d-flex flex-wrap justify-content-center"></div>
+                        <div id="watch-search-results-container" class="d-flex flex-wrap justify-content-center"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
 
@@ -48,9 +74,13 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/search.js"></script>
+        <script>gettoken(<?php echo "'$username'";?>, <?php echo "'$password'";?>, <?php echo "'$id'";?>)</script>
+        <script>gettrending()</script>
+        <script>getwatchlist()</script>
+        <script>$(function () {$('[data-toggle="tooltip"]').tooltip()})</script>
     </body>
     <footer>
-        <div class="d-flex justify-content-center footer">
+        <div class="d-flex justify-content-center footer-no-bottom">
             <p>Made by Charlie Macdonald, 2020</p>
         </div>
     </footer>

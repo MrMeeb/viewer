@@ -79,87 +79,24 @@ const fetchBackground = function() {
 }
 
 
-//Sign Up
+//Get Token for API access
 
-signup = async () => {
+gettoken = async (username, password, id) => {
 
-    let username = document.getElementById('username').value
+    const body = {username: username, password: password, id: id}
 
-    let password = document.getElementById('password').value
-
-    if (username.length === 0 || password.length === 0) {
-        
-        return null
-
+    const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
+        },
+        body: JSON.stringify(body)
     }
 
-    else {
+    const request = await fetch('/api/gettoken', options)
+    const response = await request.json();
 
-        const body = {username: username, password: password}
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
-            },
-            body: JSON.stringify(body)
-        }
-
-        const request = await fetch('/api/signup', options)
-        const response = await request.json()
-
-        console.log(response)
-
-        if (response.status === false) {
-            console.log('username already taken')
-
-            formFeedback('username-feedback', 'User already exists', 'invalid-feedback')
-
-        }
-
-        else {
-            let formContainer = document.getElementById('signup-form')
-
-            let successContainer = document.getElementById('signup-success')
-    
-            toggleSlide(formContainer, successContainer)
-        }
-    }
-}
-
-//Sign In
-
-signin = async () => {
-
-    let username = document.getElementById('username').value
-
-    let password = document.getElementById('password').value
-
-    if (username.length === 0 || password.length === 0) {
-        
-        return null
-
-    }
-
-    else {
-
-        const body = {username: username, password: password}
-
-        const options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Cache-Control': 'no-store, no-cache, must-revalidate, proxy-revalidate'
-            },
-            body: JSON.stringify(body)
-        }
-
-        const request = await fetch('/api/signin', options)
-        const response = await request.json()
-
-        console.log(response)
-
-        localStorage.setItem('token', response)
-    }
+    localStorage.setItem('token', response)
+  
 }

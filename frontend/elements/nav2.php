@@ -18,7 +18,7 @@
             <a class="nav-link" href="/about">About<span class="sr-only"></span></a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" style="color: #FF007F !important" href="/signout">Sign Out<span class="sr-only"></span></a>
+            <a class="nav-link" style="color: #FF007F !important" href="elements/signout">Sign Out<span class="sr-only"></span></a>
         </li>
     </ul>
 </nav>

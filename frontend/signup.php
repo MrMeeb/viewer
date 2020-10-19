@@ -1,3 +1,4 @@
+<?php include "elements/registration.php" ?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -11,7 +12,6 @@
             <div class="mainBackground-overlay">
 
                 <?php include "elements/nav1.php" ?>
-                <?php include "elements/registration.php" ?>
 
                 <div class="d-flex flex-column justify-content-center align-items-center" style="height: 80%">
                     <div id='signup-container' class="signup-container shadow d-flex flex-column justify-content-center align-items-center">
