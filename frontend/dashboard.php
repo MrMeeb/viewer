@@ -3,7 +3,7 @@
 
   if (!isset($_SESSION['username'])) {
   	$_SESSION['msg'] = "You must log in first";
-  	header('location: signin');
+  	header('location: elements/signout');
   }
 ?>
 <?php include "elements/registration.php"?>

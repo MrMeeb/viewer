@@ -121,4 +121,6 @@ if ($curPageName === 'dashboard.php') {
     $password = $_COOKIE['hash'];
     $id = $_COOKIE['id'];
 
+    //echo "<script>gettoken('$username', '$password', '$id')</script>";
+
 }

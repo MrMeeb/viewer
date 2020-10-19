@@ -1,6 +1,6 @@
-const token = localStorage.getItem('token')
-
 function defaultheader(body) {
+
+    const token = localStorage.getItem('token')
 
     if (body != null) {
 
@@ -47,25 +47,60 @@ search = async() => {
 }
 
 gettrending = async() => {
-    
-    const request = await fetch('/api/trending', defaultheader())
-    const response = await request.json();
 
-    //console.log(response)
+    const token = localStorage.getItem('token')
 
-    displayresults(response, 'Trending this week', 'watch-search')
+    //Check to see if token is available yet
+    if (token === null){
+
+        console.log('Waiting for token')
+
+        setTimeout(() => {
+            gettrending()
+            return
+        }, 100);
+
+    }
+    else {
+
+        const request = await fetch('/api/trending', defaultheader())
+        const response = await request.json();
+
+        //console.log(response)
+
+        displayresults(response, 'Trending this week', 'watch-search')
+
+    }
+
 
 }
 
 getwatchlist = async() => {
 
-    const request = await fetch('/api/watchlist', defaultheader())
-    const response = await request.json();
+    const token = localStorage.getItem('token')
 
-    console.log(response)
+    //Check to see if token is available yet
+    if (token === null){
 
-    if (response.status === 'success') {
+        console.log('Waiting for token')
 
+        setTimeout(() => {
+            getwatchlist()
+            return
+        }, 100);
+
+    }
+    else {
+
+        const request = await fetch('/api/watchlist', defaultheader())
+        const response = await request.json();
+
+        console.log(response)
+
+        if (response.status === 'success') {
+
+
+        }
 
     }
 
