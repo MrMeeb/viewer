@@ -60,6 +60,87 @@ function apiauthenticate(token) {
 
 }
 
+movielookup = async(movies) => {
+
+    //console.log(movies)
+
+    async function query( sql, args ) {
+        return new Promise( ( resolve, reject ) => {
+            dbConnection.query( sql, args, ( err, rows ) => {
+                if ( err )
+                    return reject( err );
+                resolve( rows[0] );
+            });
+        });
+    }
+
+    const array = movies.map(async(value) => {
+        const dblookup = await query(`SELECT * FROM movies WHERE id = ${value.tmdb_id}`)
+        return dblookup
+    });
+
+    const promise = Promise.all(array).then((values) => {
+        return values
+    })
+
+    return promise
+
+}
+
+/* movielookup = async(movies) => {
+
+    async function query( sql, args ) {
+        return new Promise( ( resolve, reject ) => {
+            dbConnection.query( sql, args, ( err, rows ) => {
+                if ( err )
+                    return reject( err );
+                resolve( rows[0] );
+            });
+        });
+    }
+
+    function fakePromise(result, time) {
+        return new Promise(res => {
+          setTimeout(() => res(result), time);
+        });
+    }
+      
+    async function syncMap(movies) {
+        return await Promise.all(movies.map(async(value) => {
+            const result = await fakePromise(value, 1000);
+            console.log(result.tmdb_id);
+            const dbquery = await query(`SELECT * FROM movies WHERE id = ${result.tmdb_id}`)
+            console.log(dbquery)
+            return dbquery;
+        }));
+    }
+    
+    (async() => {
+        console.log('Running...');
+        //console.log(await syncMap(movies));
+    })();
+
+    return syncMap(movies)
+
+}
+ */
+    
+async function mapAsync(arr, fn) {
+    const result = [];
+    for (let i = 0; i < arr.length; ++i) {
+        result.push(await fn(arr[i], i, arr));
+    }
+    return result;
+    }
+
+async function asyncMap(movies) {
+    return mapAsync(movies, async(value) => {
+        const result = await fakePromise(value, 1000);
+        console.log(result);
+        return result;
+    });
+    }
+
 app.post('/api/gettoken', (request, response) => {
     console.log('I got a request for a token')
 
@@ -116,7 +197,7 @@ app.post('/api/gettoken', (request, response) => {
 
 })
 
-app.post('/api/moviesearch', (request, response) => {
+app.post('/api/movie/search', (request, response) => {
 
     console.log('Request made on the search API')
 
@@ -182,7 +263,7 @@ app.post('/api/trending', (request, response) => {
 
 })
 
-app.post('/api/watchlist', (request, response) => {
+app.post('/api/watchlist/get', (request, response) => {
 
     console.log('Request made on the watch list API')
 
@@ -204,7 +285,23 @@ app.post('/api/watchlist', (request, response) => {
                 }
                 else {
 
-                    response.json({status: 'success', results})
+                    //console.log(results)
+
+                    lookup = async(results) => {
+
+                        //const lookup = await movielookup(results)
+
+                        const lookup = await movielookup(results)
+
+                        console.log(lookup)
+
+                        response.json({status: 'success', lookup, results})
+
+
+                    }
+
+                    lookup(results)
+                    
 
                 }
 
@@ -219,7 +316,7 @@ app.post('/api/watchlist', (request, response) => {
 
 })
 
-app.post('/api/addwatchlist', (request, response) => {
+app.post('/api/watchlist/add', (request, response) => {
 
     let token = apiauthenticate(request.header('Authorization'))
 
@@ -240,7 +337,7 @@ app.post('/api/addwatchlist', (request, response) => {
                 dbConnection.query(`INSERT INTO watch (user_id, tmdb_id) VALUES (${user_id}, ${tmdbid})`, function(err, results) {
                     if (err) throw err
 
-                    dbConnection.query(`SELECT * FROM movies WHERE tmdb_id = ${tmdbid}`, function(err, results) {
+                    dbConnection.query(`SELECT * FROM movies WHERE id = ${tmdbid}`, function(err, results) {
 
                         if (err) throw err 
 
@@ -270,10 +367,6 @@ app.post('/api/addwatchlist', (request, response) => {
             }
 
         })
-        
-        
-
-
 
 
     }

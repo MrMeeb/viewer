@@ -31,18 +31,59 @@ function defaultheader(body) {
     }
 }
 
-search = async() => {
+search = async(purpose) => {
 
-    const searchterm = document.getElementById('movie-search-input').value
+    let target = $(event.target)
+
+    var searchterm = target[0].firstChild.nextElementSibling.childNodes[3].value
 
     let body = {searchterm: searchterm}
 
     console.log(searchterm)
 
-    const request = await fetch('/api/moviesearch', defaultheader(body))
-    const response = await request.json();
+    if (purpose === 'search-watch') {
 
-    console.log(response)
+        console.log('Searching watch-list')
+
+        const request = await fetch('/api/movie/search', defaultheader(body))
+        const response = await request.json();
+
+        console.log(response)
+
+    }
+
+    if (purpose === 'search-watched') {
+
+        console.log('Searching watched-list')
+
+        const request = await fetch('/api/movie/search', defaultheader(body))
+        const response = await request.json();
+
+        console.log(response)
+
+    }
+
+    if (purpose === 'add-watch') {
+
+        console.log('Searching to add to watch-list')
+        
+        const request = await fetch('/api/movie/search', defaultheader(body))
+        const response = await request.json();
+
+        console.log(response)
+
+    }
+
+    if (purpose === 'add-watch') {
+
+        console.log('Searching to add to watched-list')
+        
+        const request = await fetch('/api/movie/search', defaultheader(body))
+        const response = await request.json();
+
+        console.log(response)
+
+    }
 
 }
 
@@ -92,13 +133,19 @@ getwatchlist = async() => {
     }
     else {
 
-        const request = await fetch('/api/watchlist', defaultheader())
+        const request = await fetch('/api/watchlist/get', defaultheader())
         const response = await request.json();
 
         console.log(response)
 
+
+
+        //displayresults(response.results, 'Watch List', 'watch')
+
         if (response.status === 'success') {
 
+            document.getElementById('watch-results-container').innerHTML = ''
+            displayresults(response.lookup, 'Watch List', 'watch') 
 
         }
 
@@ -110,7 +157,7 @@ displayresults = async (args, category, parent) => {
 
     let parentcontainer = document.getElementById(`${parent}-results-container`)
 
-    let parentcategory = document.getElementById('watch-search-results-category')
+    let parentcategory = document.getElementById(`${parent}-results-category`)
 
     let categorytext = document.createElement('h3')
     categorytext.textContent = category
@@ -121,13 +168,13 @@ displayresults = async (args, category, parent) => {
 
     function a(value) {
 
+        let releaseDatesplit = value.release_date.split('-')[0]
+
         let TMDB = 'https://themoviedb.org/movie/'
 
         let TMDBImages = 'https://image.tmdb.org/t/p/w500'
 
-        console.log(value)
-
-        let releaseDatesplit = value.release_date.split('-')[0]
+        //console.log(value)
 
         let containerBackground = document.createElement("div")
         containerBackground.classList.add('results-background', 'drop-shadow-light', 'm-1')
@@ -183,7 +230,7 @@ addwatch = async(tmdbid, title, release_date, poster, backdrop) => {
 
     console.log(body)
 
-    const request = await fetch('/api/addwatchlist', defaultheader(body))
+    const request = await fetch('/api/watchlist/add', defaultheader(body))
     const response = await request.json()
 
     console.log(response)
