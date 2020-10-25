@@ -538,7 +538,7 @@ displayresults = async (args, category, parent, extras) => {
             }
             else if (value.watched === 'added') {
 
-                remove.onclick = function() {$('[data-toggle="tooltip"]').tooltip('disable');}
+                remove.onclick = function() {removewatched(value.tmdb_id)}
                 action.appendChild(remove)
                 $(`#${value.tmdb_id}-remove`).tooltip({title: "Remove from list"});
 
