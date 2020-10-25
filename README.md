@@ -4,7 +4,7 @@
 
 A simple web-app made to track movies you've watched, and movies you want to watch. 
 
-Has a Bootstrap frontend, with a PHP server for authentication and uniform features between pages, a MySQL Database for data storage, and a NodeJS API for proxying requests to The Movie DB and querying certain parts of the database.
+Has a Bootstrap frontend, with a PHP server for authentication and uniform elements between pages. Uses MySQL for data storage, and a NodeJS API for proxying requests to TheMovieDB as well as querying certain parts of the database.
 
 Demonstrating skills in:
 * NodeJS
