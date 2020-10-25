@@ -112,6 +112,20 @@ a.active {
     font-size: 1rem;
 }
 
+.btn-primary-action {
+    width: 30px;
+    height: 30px;
+    font-size: 0.8rem;
+    border-radius: 0.25rem;
+    padding: 0;
+    margin-left: 0.25rem;
+    margin-right: 0.25rem;
+}
+
+.btn-primary-action.disabled {
+    cursor: not-allowed;
+}
+
 .btn-primary:hover,
 .btn-primary:active,
 .btn-primary:focus,
@@ -222,9 +236,9 @@ a.active {
  */	background-position: center;
 	background-repeat: no-repeat;
 	background-size: cover;
-	border-width: 1px;
-	border-color: rgba(70,70,70,1);
-	border-style: solid;
+    border: 2px solid rgba(70,70,70,1);
+    border-radius: .5rem;
+    overflow: hidden;
 }
 
 .result-container {
@@ -266,6 +280,20 @@ a.active {
 .close {
     opacity: 1 !important;
     color: white !important;
+}
+
+.badge {
+    font-size: 70%;
+}
+
+.badge-pink {
+    background: rgb(255,51,153);
+    background: linear-gradient(270deg, rgba(255,51,153,1) 0%, rgba(224,0,112,1) 100%);
+    border: 1px solid rgb(197, 15, 106);
+}
+
+.badge-blue {
+    background-color: #31AFD4;
 }
 
 /* width */

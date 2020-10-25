@@ -1,6 +1,6 @@
 <div class="m-auto" style="width: 100%; max-width: 600px">
     <div class="d-flex flex-column align-items-center m-5">
-        <form onsubmit="search('search-watch');return false" action="#" style="width: 100%;">
+        <form onsubmit="search('search-watch', 'watch');return false" action="#" style="width: 100%;">
             <div id="watch-search-container" class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text prepend"></span>
@@ -11,10 +11,13 @@
                 </div>
             </div>
         </form>
-        <div id="watch-search-feedback" class="mx-2" style="display: block"></div>
-        <span class="mr-auto" data-toggle="modal" data-target="#add-movie-watch-modal">
-            <button type="button" class="btn btn-primary btn-primary-small mt-3" data-toggle="tooltip" data-placement="bottom" title="Add a movie"><i class="fas fa-plus"></i></button>
-        </span>
+        <div id="watch-search-feedback" class="mx-2 hidden" style="display: block"></div>
+        <div class="d-flex" style="width: 100%">
+            <span class="mr-auto" data-toggle="modal" data-target="#add-movie-watch-modal">
+                <button type="button" class="btn btn-primary btn-primary-small mt-3" data-toggle="tooltip" title="Add a movie"><i class="fas fa-plus"></i></button>
+            </span>
+            <span id="watch-clear-search" class="mx-2 ml-auto"></span>
+        </div>
     </div>
 </div>
 <!-- Button trigger modal -->
@@ -22,8 +25,10 @@
 <div id="watch-results-category" class="d-flex flex-wrap justify-content-center"></div>
 <div id="watch-results-container" class="d-flex flex-wrap justify-content-center">
 
-    <div class="text-center subtext d-flex flex-column align-items-center justify-content-center">Looks like you haven't added any movies to your watch list.    
-        <button type="button" class="btn btn-primary mt-3" data-toggle="modal" data-target="#add-movie-watch-modal">Add movie</button>
+    <div class="text-center subtext d-flex flex-column align-items-center justify-content-center">Loading    
+        <span><i class="fas fa-spinner fa-spin"></i></span>
     </div>
 
 </div>
+
+<?php?>
