@@ -17,7 +17,7 @@
     </head>
     <body>
         <div id="mainBackground" class="mainBackground">
-            <div class="mainBackground-overlay-no-filter">
+            <div class="mainBackground-overlay d-flex flex-column">
 
                 <?php include "elements/nav2.php" ?>
 
@@ -40,7 +40,11 @@
                             </div>
                         </div>
                     </div>
-                </div>               
+                </div>       
+                
+                <footer class="d-flex justify-content-center footer mt-auto">
+                    <p>Made by Charlie Macdonald, 2020</p>
+                </footer>        
             </div>
         </div>
 
@@ -133,15 +137,11 @@
         <script src="js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
         <script src="js/search.js"></script>
+        <script>fetchBackground()</script>
         <script>gettoken(<?php echo "'$username'";?>, <?php echo "'$password'";?>, <?php echo "'$id'";?>)</script>
         <script>gettrending()</script>
         <script>getwatchlist()</script>
         <script>getwatchedlist()</script>
         <script>$(function () {$('[data-toggle="tooltip"]').tooltip({trigger: 'hover'})})</script>
     </body>
-    <footer>
-        <div class="d-flex justify-content-center footer-no-bottom">
-            <p>Made by Charlie Macdonald, 2020</p>
-        </div>
-    </footer>
 </html>

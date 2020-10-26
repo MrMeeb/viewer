@@ -12,11 +12,11 @@
     <body>
 
         <div id="mainBackground" class="mainBackground">
-            <div class="mainBackground-overlay">
+            <div class="mainBackground-overlay d-flex flex-column">
     
                 <?php include "elements/nav1.php" ?>
 
-                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 80%">
+                <div class="d-flex flex-column justify-content-center align-items-center mt-auto mb-auto">
                     <div id='signin-container' class="signup-container shadow d-flex flex-column justify-content-center align-items-center">
                         <h3 class="mb-3">Sign In</h3>
                         <form id="signin-form" action="signin" method="POST" class="d-flex flex-column justify-content-center align-items-center needs-validation">
@@ -33,6 +33,9 @@
                         <p class="text-center font-italic">Don't have an account?<br><a href="/signup" class="text-decoration-none">Create one</a></p>
                     </div>
                 </div>
+                <footer class="d-flex justify-content-center footer mt-auto">
+                    <p>Made by Charlie Macdonald, 2020</p>
+                </footer>
             </div>
         </div>
 
@@ -47,9 +50,4 @@
         <script>fetchBackground()</script>
 
     </body>
-    <footer>
-        <div class="d-flex justify-content-center footer">
-            <p>Made by Charlie Macdonald, 2020</p>
-        </div>
-    </footer>
 </html>

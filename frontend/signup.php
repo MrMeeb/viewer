@@ -9,11 +9,11 @@
     </head>
     <body>
         <div id="mainBackground" class="mainBackground">
-            <div class="mainBackground-overlay">
+            <div class="mainBackground-overlay d-flex flex-column">
 
                 <?php include "elements/nav1.php" ?>
 
-                <div class="d-flex flex-column justify-content-center align-items-center" style="height: 80%">
+                <div class="d-flex flex-column justify-content-center align-items-center mt-auto mb-auto">
                     <div id='signup-container' class="signup-container shadow d-flex flex-column justify-content-center align-items-center">
                         <form id="signup-form" action="signup" method="POST" class="d-flex flex-column justify-content-center align-items-center needs-validation linear-transitions">
                             <h3 class="mb-3">Create an Account</h3>
@@ -30,6 +30,9 @@
                         </form>
                     </div>
                 </div>
+                <footer class="d-flex justify-content-center footer mt-auto">
+                    <p>Made by Charlie Macdonald, 2020</p>
+                </footer>
             </div>
         </div>
 
@@ -46,8 +49,6 @@
 
     </body>
     <footer>
-        <div class="d-flex justify-content-center footer">
-            <p>Made by Charlie Macdonald, 2020</p>
-        </div>
+
     </footer>
 </html>
