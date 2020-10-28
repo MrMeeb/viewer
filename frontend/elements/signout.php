@@ -1,6 +1,6 @@
 <script>
     localStorage.removeItem('token');
-    window.location.replace('/')
+    window.location.replace('/signin')
 </script>
 
 <?php

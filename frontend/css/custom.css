@@ -247,6 +247,10 @@ a.active {
     color: #FF007F
 }
 
+.blue {
+    color: #31AFD4
+}
+
 .subtext {
     color: rgba(250, 250, 250, 0.5);
 }
@@ -278,6 +282,11 @@ a.active {
 
 .badge-blue {
     background-color: #31AFD4;
+}
+
+.language-container {
+    width: 150px;
+    height: 150px;
 }
 
 /* width */

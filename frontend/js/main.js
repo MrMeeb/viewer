@@ -1,15 +1,3 @@
-
-
-//Form grabber
-
-/* const form = document.querySelector('form')
-if (form !== null) {
-    form.addEventListener('submit', event => {
-        // submit event detected
-        event.preventDefault()
-      })
-} */
-
 // --------------
 // Visual Elements
 // --------------
@@ -19,8 +7,6 @@ function toggleSlide(...args) {
     args.forEach(b)
 
     function b(value, index, array) {
-
-        //console.log(value)
 
         function getHeight() {
             value.style.height = 'auto'
@@ -32,23 +18,15 @@ function toggleSlide(...args) {
         if (value.offsetHeight == 0) {
             //if already hidden, unhide
             var height = `${getHeight()}px`
-            setTimeout(() => {value.style.height = height;}, 50) //was 1
+            setTimeout(() => {value.style.height = height;}, 50)
             setTimeout(() => {value.style.height = 'auto'; value.style.overflow = 'visible'}, 200)   
-//            value.classList.add('unhidden')
-//            value.classList.remove('hidden')
-//            setTimeout(() => {value.style.height = ''}, 200)
         }
-/*         else if (value.classList.contains('no-rehide')){
 
-        } */
         else {
             //if already visible, hide
             value.style.overflow = 'hidden'
             value.style.height = `${value.offsetHeight}px`
             setTimeout(() => {value.style.height = `0`}, 2)
-//            value.classList.add('hidden')
-//            value.classList.remove('unhidden')
-//            setTimeout(() => {value.style.height = ''}, 1)
         }
 
 

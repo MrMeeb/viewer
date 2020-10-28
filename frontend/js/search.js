@@ -410,7 +410,7 @@ getwatchedlist = async() => {
 
 }
 
-displayresults = async (args, category, parent, extras) => {
+displayresults = async (args, category, parent) => {
 
     let parentcontainer = document.getElementById(`${parent}-results-container`)
 
@@ -444,6 +444,9 @@ displayresults = async (args, category, parent, extras) => {
        
         let container = document.createElement("div")
         container.classList.add('d-flex', 'flex-column', 'align-items-center', 'result-container')
+        
+        let tooltipContainer = document.createElement("div")
+        tooltipContainer.id = `${parent}-${value.tmdb_id}-tooltips`
 
         let poster = document.createElement("img")
         poster.classList.add('poster', 'align-self-center', 'mt-2', 'drop-shadow-light')
@@ -488,6 +491,7 @@ displayresults = async (args, category, parent, extras) => {
 
         parentcontainer.appendChild(containerBackground)
         containerBackground.appendChild(container)
+        container.appendChild(tooltipContainer)
         container.appendChild(title)
         container.appendChild(subtitle)
         subtitle.appendChild(releaseDate)
@@ -502,7 +506,7 @@ displayresults = async (args, category, parent, extras) => {
                 add.id = `${value.tmdb_id}-add`
                 add.onclick = function () {addwatch(value.tmdb_id, value.title, value.release_date, value.poster_path, value.backdrop_path, value.vote_average);}
                 action.appendChild(add)
-                $(`#${value.tmdb_id}-add`).tooltip({title: "Add to watch list"});
+                $(`#${value.tmdb_id}-add`).tooltip({title: "Add to watch list", container: `#${parent}-${value.tmdb_id}-tooltips`});
     
             }
             else if (value.watch === 'added') {
@@ -513,8 +517,8 @@ displayresults = async (args, category, parent, extras) => {
                 remove.onclick = function() {removewatch(value.tmdb_id);}
                 action.appendChild(add)
                 action.appendChild(remove)
-                $(`#${value.tmdb_id}-add-watched`).tooltip({title: "Mark as watched"});
-                $(`#${value.tmdb_id}-remove`).tooltip({title: "Remove from list"});
+                $(`#${value.tmdb_id}-add-watched`).tooltip({title: "Mark as watched", container: `#${parent}-${value.tmdb_id}-tooltips`});
+                $(`#${value.tmdb_id}-remove`).tooltip({title: "Remove from list", container: `#${parent}-${value.tmdb_id}-tooltips`});
     
             }
             else if (value.watch) {
@@ -533,14 +537,14 @@ displayresults = async (args, category, parent, extras) => {
                 add.id = `${value.tmdb_id}-add`
                 add.onclick = function () {addwatched(value.tmdb_id, value.title, value.release_date, value.poster_path, value.backdrop_path, value.vote_average);}
                 action.appendChild(add)
-                $(`#${value.tmdb_id}-add`).tooltip({title: "Mark as watched"});
+                $(`#${value.tmdb_id}-add`).tooltip({title: "Mark as watched", container: `#${parent}-${value.tmdb_id}-tooltips`});
     
             }
             else if (value.watched === 'added') {
 
                 remove.onclick = function() {removewatched(value.tmdb_id)}
                 action.appendChild(remove)
-                $(`#${value.tmdb_id}-remove`).tooltip({title: "Remove from list"});
+                $(`#${value.tmdb_id}-remove`).tooltip({title: "Remove from list", container: `#${parent}-${value.tmdb_id}-tooltips`});
 
             }
             else if (value.watched) {
