@@ -4,12 +4,6 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const moment = require('moment')
 
-/* const crypto = require('crypto');
-crypto.randomBytes(64, (err, buf) => {
-  if (err) throw err;
-  console.log(`${buf.length} bytes of random data: ${buf.toString('hex')}`);
-}); */
-
 require('dotenv').config();
 
 const dbConnection = mysql.createConnection({
@@ -62,8 +56,6 @@ function apiauthenticate(token) {
 }
 
 movielookup = async(movies) => {
-
-    //console.log(movies)
 
     async function query( sql, args ) {
         return new Promise( ( resolve, reject ) => {
@@ -252,8 +244,6 @@ app.post('/api/movie/search', (request, response) => {
 
                     const returnedTarget = Object.assign(target, source, source2)
 
-                    //console.log(returnedTarget)
-
                     array.push(returnedTarget)
                     
                 }
@@ -312,8 +302,6 @@ app.post('/api/trending', (request, response) => {
                     delete target.id
 
                     const returnedTarget = Object.assign(target, source)
-
-                    //console.log(returnedTarget)
 
                     array.push(returnedTarget)
                     
@@ -384,14 +372,10 @@ app.post('/api/watchlist/get', (request, response) => {
 
                                 const returnedTarget = Object.assign(target, source)
 
-                                //console.log(returnedTarget)
-
                                 array.push(returnedTarget)
                                 
                             }
-   
-                            //response.json({status: 'success', lookup, results})
-    
+       
                             response.json({status: 'success', array})
 
                         }
@@ -449,14 +433,10 @@ app.post('/api/watchlist/get', (request, response) => {
 
                                 const returnedTarget = Object.assign(target, source)
 
-                                //console.log(returnedTarget)
-
                                 array.push(returnedTarget)
                                 
                             }
-   
-                            //response.json({status: 'success', lookup, results})
-    
+       
                             response.json({status: 'success', array})
 
                         }

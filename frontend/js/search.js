@@ -211,9 +211,6 @@ search = async(purpose, focus) => {
 
     if (purpose === 'add-watched') {
 
-
-        //RE DO FOR WATCHED
-
         let feedback = document.getElementById('watched-add-search-feedback')
         let clearSearchParent = document.getElementById('watched-add-clear-search')
         feedback.textContent = ''
@@ -320,8 +317,6 @@ getwatchlist = async() => {
         const request = await fetch('/api/watchlist/get', defaultheader())
         const response = await request.json();
 
-        //displayresults(response.results, 'Watch List', 'watch')
-
         if (response.status === 'success') {
 
             document.getElementById(`watch-results-container`).innerHTML = ''
@@ -374,8 +369,6 @@ getwatchedlist = async() => {
 
         const request = await fetch('/api/watchedlist/get', defaultheader())
         const response = await request.json();
-
-        //displayresults(response.results, 'Watch List', 'watch')
 
         if (response.status === 'success') {
 
@@ -434,8 +427,6 @@ displayresults = async (args, category, parent) => {
         let TMDB = 'https://themoviedb.org/movie/'
 
         let TMDBImages = 'https://image.tmdb.org/t/p/w500'
-
-        //console.log(value)
 
         let containerBackground = document.createElement("div")
         containerBackground.classList.add('results-background', 'drop-shadow-light', 'm-1')
