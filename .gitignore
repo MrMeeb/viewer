@@ -1,4 +1,10 @@
 frontend/elements/creds.php
+frontend/css/bootstrap*.css
+frontend/css/bootstrap*.map
+
+frontend/js/bootstrap*.js
+frontend/js/bootstrap*.map
+
 
 # Logs
 logs
