@@ -1,11 +1,11 @@
 <div class="m-auto" style="width: 100%; max-width: 600px">
-    <div class="d-flex flex-column align-items-center m-5">
+    <div class="d-flex flex-column align-items-center tab-action-container">
         <form onsubmit="search('search-watched', 'watched');return false" action="#" style="width: 100%;">
             <div id="watched-search-container" class="input-group">
                 <div class="input-group-prepend">
                     <span class="input-group-text prepend"></span>
                 </div>
-                <input type="text" class="form-control movie-search" id="watched-search-input" autocomplete="off" placeholder="Search watched List">
+                <input type="text" class="form-control movie-search" id="watched-search-input" autocomplete="off" placeholder="Search Watched List">
                 <div class="input-group-append">
                     <button id="watched-search-status" type="submit" class="input-group-text append btn btn-primary btn-primary-append"><i class="fas fa-search"></i></button>
                 </div>

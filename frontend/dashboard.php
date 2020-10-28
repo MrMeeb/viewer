@@ -21,7 +21,7 @@
 
                 <?php include "elements/nav2.php" ?>
 
-                <div id="tabs-parent-container" class="d-flex flex-column align-items-center m-4">
+                <div id="tabs-parent-container" class="d-flex flex-column align-items-center my-4">
                     <div id="tabs-container" class="tabs-container">
                         <ul class="nav nav-tabs nav-tabs-custom nav-justified" id="myTab" role="tablist">
                             <li class="nav-item">

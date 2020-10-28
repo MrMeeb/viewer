@@ -1,5 +1,5 @@
 <div class="m-auto" style="width: 100%; max-width: 600px">
-    <div class="d-flex flex-column align-items-center m-5">
+    <div class="d-flex flex-column align-items-center tab-action-container">
         <form onsubmit="search('search-watch', 'watch');return false" action="#" style="width: 100%;">
             <div id="watch-search-container" class="input-group">
                 <div class="input-group-prepend">

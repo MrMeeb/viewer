@@ -37,7 +37,7 @@ if (isset($_POST["sign-up-submit"])) {
         }
         else {
 
-            echo  "$username already exists <br>";
+            $usernameErr = "$username already exists";
 
         }
 
@@ -45,8 +45,9 @@ if (isset($_POST["sign-up-submit"])) {
     }
 
     if ($password_1 !== $password_2) {
-        echo "Passwords don't match </br>";
-        echo "$password_1, $password_2";
+
+        $passwordErr = "Passwords don't match";
+
     }
 }
 
