@@ -10,3 +10,5 @@ Demonstrating skills in:
 * PHP
 * HTML
 * CSS 
+
+Requires Bootstrap to be installed in frontend/bootstrap
