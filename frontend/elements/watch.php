@@ -28,7 +28,7 @@
     <div class="text-center subtext d-flex flex-column align-items-center justify-content-center">
         <span>Loading</span>
         <span><i class="fas fa-spinner fa-spin"></i></span>
-        <span class="font-italic" style="font-size: smaller">Not loading? Try <a href="" onclick="reload()" class="text-decoration-none">reloading</a> the page</span>
+        <span class="font-italic" style="font-size: smaller">Not loading? Try <a href="" onclick="reload()" class="text-decoration-none">reloading</a> the page.</span>
     </div>
 
 </div>
