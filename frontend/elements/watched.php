@@ -25,8 +25,10 @@
 <div id="watched-results-category" class="d-flex flex-wrap justify-content-center"></div>
 <div id="watched-results-container" class="d-flex flex-wrap justify-content-center">
 
-    <div class="text-center subtext d-flex flex-column align-items-center justify-content-center">Loading    
+    <div class="text-center subtext d-flex flex-column align-items-center justify-content-center">
+        <span>Loading</span>
         <span><i class="fas fa-spinner fa-spin"></i></span>
+        <span class="font-italic" style="font-size: smaller">Not loading? Try <a href="" onclick="reload()" class="text-decoration-none">reloading</a> the page</span>
     </div>
 
 </div>

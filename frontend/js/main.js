@@ -78,3 +78,9 @@ gettoken = async (username, password, id) => {
     localStorage.setItem('token', response)
   
 }
+
+function reload() {
+
+    location.reload()
+
+}
