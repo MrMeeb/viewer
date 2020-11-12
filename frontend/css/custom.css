@@ -288,6 +288,14 @@ a.active {
     display: none
 }
 
+.progress-bar-pink {
+    background-color: #fc3a9b;
+}
+
+.progress {
+    background-color: #130523;
+}
+
 /* width */
 ::-webkit-scrollbar {
 	width: 5px;
