@@ -9,6 +9,4 @@ Demonstrating skills in:
 * JavaScript
 * PHP
 * HTML
-* CSS 
-
-Requires Bootstrap to be installed in frontend/bootstrap
+* CSS
