@@ -14,7 +14,9 @@
         <?php include "elements/header.php"?>
 
         <title>Dashboard</title>
+
     </head>
+    
     <body>
         <div id="mainBackground" class="mainBackground">
             <div class="mainBackground-overlay d-flex flex-column">
@@ -128,15 +130,15 @@
             </div>
         </div>
 
+        <!-- Error toast -->
+
+
 
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <?php include "elements/footer.php"?>
         <script>gettoken(<?php echo "'$username'";?>, <?php echo "'$password'";?>, <?php echo "'$id'";?>)</script>
-        <script>gettrending()</script>
-        <script>getwatchlist()</script>
-        <script>getwatchedlist()</script>
         <script>$(function () {$('[data-toggle="tooltip"]').tooltip({trigger: 'hover'})})</script>
     </body>
 </html>

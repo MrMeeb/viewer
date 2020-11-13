@@ -142,7 +142,7 @@ moviewatchedlookup = async(id, movies) => {
 
 }
     
-app.post('/api/gettoken', (request, response) => {
+app.post('/api/token/get', (request, response) => {
     console.log('I got a request for a token')
 
     let username = request.body.username
@@ -195,6 +195,16 @@ app.post('/api/gettoken', (request, response) => {
     }
 
     gettoken()
+
+})
+
+app.post('/api/token/check', (request, response) => {
+
+    console.log('Got a request to check the token')
+
+    let token = apiauthenticate(request.header('Authorization'))
+
+    response.json(token)
 
 })
 

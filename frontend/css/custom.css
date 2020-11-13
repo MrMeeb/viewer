@@ -288,6 +288,14 @@ a.active {
     display: none
 }
 
+.progress-bar-pink {
+    background-color: #fc3a9b;
+}
+
+.progress {
+    background-color: #130523;
+}
+
 /* width */
 ::-webkit-scrollbar {
 	width: 5px;
@@ -329,6 +337,18 @@ a.active {
 
     .tab-action-container {
         margin: 3rem 1rem;
+    }
+
+}
+
+@supports not ((backdrop-filter: blur()) or (-webkit-backdrop-filter: blur();)){
+
+    .mainBackground-overlay {
+        background-color: rgba(0,0,0,0.75);
+    }
+
+    .result-container {
+        background-color: rgba(0,0,0,0.75);
     }
 
 }
