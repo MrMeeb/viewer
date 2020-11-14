@@ -525,7 +525,7 @@ displayresults = async (args, category, parent) => {
             if(value.watched == false){
 
                 add.innerHTML = '<i class="fas fa-eye"></i>'
-                add.id = `${value.tmdb_id}-add`
+                add.id = `${value.tmdb_id}-add-watched`
                 add.onclick = function () {addwatched(value.tmdb_id, value.title, value.release_date, value.poster_path, value.backdrop_path, value.vote_average);}
                 action.appendChild(add)
                 $(`#${value.tmdb_id}-add`).tooltip({title: "Mark as watched", container: `#${parent}-${value.tmdb_id}-tooltips`});
@@ -648,7 +648,7 @@ addwatched = async(tmdb_id, title, release_date, poster, backdrop, rating) => {
     console.log(tmdb_id)
 
     let subtitle = document.getElementById(`${tmdb_id}-subtitle`)
-    let button = document.getElementById(`${tmdb_id}-add`)
+    let button = document.getElementById(`${tmdb_id}-add-watched`)
     button.innerHTML = `<i class="fas fa-spinner fa-spin"></i>`
 
     let date = new Date

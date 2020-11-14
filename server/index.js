@@ -6,14 +6,21 @@ const moment = require('moment')
 
 require('dotenv').config();
 
-const dbConnection = mysql.createConnection({
+/* const dbConnection = mysql.createConnection({
     host: process.env.DBHOST,
     user: process.env.DBUSER,
     password: process.env.DBPASSWORD,
     database: process.env.DATABASE
-});
+}); */
 
-dbConnection.connect();
+const dbValues = {
+    host: process.env.DBHOST,
+    user: process.env.DBUSER,
+    password: process.env.DBPASSWORD,
+    database: process.env.DATABASE
+}
+
+//dbConnection.connect();
 
 const app = express ();
 
@@ -57,6 +64,8 @@ function apiauthenticate(token) {
 
 movielookup = async(movies) => {
 
+    const dbConnection = mysql.createConnection(dbValues)
+
     async function query( sql, args ) {
         return new Promise( ( resolve, reject ) => {
             dbConnection.query( sql, args, ( err, rows ) => {
@@ -76,11 +85,15 @@ movielookup = async(movies) => {
         return values
     })
 
+    dbConnection.end()
+
     return promise
 
 }
 
 moviewatchlookup = async(id, movies) => {
+
+    const dbConnection = mysql.createConnection(dbValues)
 
     async function query( sql, args ) {
         return new Promise( ( resolve, reject ) => {
@@ -105,13 +118,17 @@ moviewatchlookup = async(id, movies) => {
 
     const promise = Promise.all(array).then((values) => {
         return values
-    }) 
+    })
+
+    dbConnection.end()
 
     return promise
 
 }
 
 moviewatchedlookup = async(id, movies) => {
+
+    const dbConnection = mysql.createConnection(dbValues)
 
     async function query( sql, args ) {
         return new Promise( ( resolve, reject ) => {
@@ -138,6 +155,8 @@ moviewatchedlookup = async(id, movies) => {
         return values
     }) 
 
+    dbConnection.end()
+
     return promise
 
 }
@@ -150,6 +169,8 @@ app.post('/api/token/get', (request, response) => {
     let id = request.body.id
 
     gettoken = async () => {
+
+        const dbConnection = mysql.createConnection(dbValues)
 
         dbConnection.query(`SELECT * FROM user_data WHERE username = "${username}";`, function (error, results, fields) {
             if (error) throw error;
@@ -191,6 +212,8 @@ app.post('/api/token/get', (request, response) => {
 
 
         })
+
+        dbConnection.end()
 
     }
 
@@ -346,6 +369,8 @@ app.post('/api/watchlist/get', (request, response) => {
         if (searchterm === undefined){
 
             getwatchlist = async() => {
+
+                const dbConnection = mysql.createConnection(dbValues)
     
                 dbConnection.query(`SELECT * FROM watch WHERE user_id = ${user_id}`, function (err, results) {
                     if (err) throw err
@@ -397,6 +422,8 @@ app.post('/api/watchlist/get', (request, response) => {
     
     
                 })
+
+                dbConnection.end()
     
             }
 
@@ -405,6 +432,8 @@ app.post('/api/watchlist/get', (request, response) => {
         } else {
 
             getwatchlist = async() => {
+
+                const dbConnection = mysql.createConnection(dbValues)
 
                 console.log(searchterm)
     
@@ -458,6 +487,8 @@ app.post('/api/watchlist/get', (request, response) => {
     
     
                 })
+
+                dbConnection.end()
     
             }
 
@@ -486,6 +517,8 @@ app.post('/api/watchlist/add', (request, response) => {
 
     if (token.status === 'success') {
 
+        const dbConnection = mysql.createConnection(dbValues)
+
         dbConnection.query(`SELECT * FROM watch WHERE user_id = ${user_id} AND tmdb_id = ${tmdb_id}`, function(err, results) {
             if (err) throw err
 
@@ -499,6 +532,8 @@ app.post('/api/watchlist/add', (request, response) => {
 
                         dbConnection.query(`REPLACE INTO movies VALUES (${tmdb_id}, "${title}", "${release_date}", "${poster}", "${backdrop}", ${rating})`, function(err, results){
                             if (err) throw err
+
+                            dbConnection.end()
 
                             response.json({status: 'success'})
 
@@ -537,6 +572,7 @@ app.post('/api/watchlist/remove', (request, response) => {
         console.log(user_id)
         console.log(tmdb_id)
 
+        const dbConnection = mysql.createConnection(dbValues)
 
         dbConnection.query(`DELETE FROM watch WHERE user_id = ${user_id} AND tmdb_id = ${tmdb_id}`, function(err, results){
             if (err) throw err
@@ -544,6 +580,8 @@ app.post('/api/watchlist/remove', (request, response) => {
             response.json({status: 'success'})
             
         })
+
+        dbConnection.end()
 
     }
 
@@ -567,6 +605,8 @@ app.post('/api/watchedlist/get', (request, response) => {
 
             getwatchedlist = async() => {
     
+                const dbConnection = mysql.createConnection(dbValues)
+
                 dbConnection.query(`SELECT * FROM watched WHERE user_id = ${user_id}`, function (err, results) {
                     if (err) throw err
     
@@ -615,6 +655,8 @@ app.post('/api/watchedlist/get', (request, response) => {
     
     
                 })
+
+                dbConnection.end()
     
             }
 
@@ -625,6 +667,8 @@ app.post('/api/watchedlist/get', (request, response) => {
             getwatchedlist = async() => {
 
                 console.log(searchterm)
+                
+                const dbConnection = mysql.createConnection(dbValues)
     
                 dbConnection.query(`SELECT * FROM watched WHERE user_id = ${user_id} AND title LIKE CONCAT ("${searchterm}", "%")`, function (err, results) {
                     if (err) throw err
@@ -680,6 +724,8 @@ app.post('/api/watchedlist/get', (request, response) => {
     
     
                 })
+
+                dbConnection.end()
     
             }
 
@@ -705,6 +751,8 @@ app.post('/api/watchedlist/add', (request, response) => {
     let rating = request.body.rating
 
     if (token.status === 'success') {
+        
+        const dbConnection = mysql.createConnection(dbValues)
 
         dbConnection.query(`SELECT * FROM watched WHERE user_id = ${user_id} AND tmdb_id = ${tmdb_id}`, function(err, results) {
             if (err) throw err
@@ -719,6 +767,8 @@ app.post('/api/watchedlist/add', (request, response) => {
 
                         dbConnection.query(`REPLACE INTO movies VALUES (${tmdb_id}, "${title}", "${release_date}", "${poster}", "${backdrop}", ${rating})`, function(err, results){
                             if (err) throw err
+
+                            dbConnection.end()
 
                             response.json({status: 'success'})
 
@@ -757,6 +807,7 @@ app.post('/api/watchedlist/remove', (request, response) => {
         console.log(user_id)
         console.log(tmdb_id)
 
+        const dbConnection = mysql.createConnection(dbValues)
 
         dbConnection.query(`DELETE FROM watched WHERE user_id = ${user_id} AND tmdb_id = ${tmdb_id}`, function(err, results){
             if (err) throw err
@@ -764,6 +815,8 @@ app.post('/api/watchedlist/remove', (request, response) => {
             response.json({status: 'success'})
             
         })
+
+        dbConnection.end()
 
     }
 

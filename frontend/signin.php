@@ -24,7 +24,7 @@
                                 </div>
                                 <input type="text" class="form-control movie-search" style="font-size: 1rem" name="username" autocomplete="off" placeholder="Username" value="<?php echo $username;?>" required>
                                 <div class="input-group-append">
-                                    <span class="input-group-text append btn btn-primary btn-primary-append"><i class="fas fa-user"></i></span>
+                                    <span class="input-group-text append btn btn-primary btn-primary-append signup-append"><i class="fas fa-user"></i></span>
                                 </div>
                             </div>
                             <div id="username-feedback" class="invalid-feedback mx-1 pb-2" style="display: block;"><?php echo $usernameErr;?></div>                    
@@ -34,7 +34,7 @@
                                 </div>
                                 <input type="password" class="form-control movie-search" style="font-size: 1rem" name="password_1" placeholder="Password" required>
                                 <div class="input-group-append">
-                                    <span class="input-group-text append btn btn-primary btn-primary-append"><i class="fas fa-key"></i></span>
+                                    <span class="input-group-text append btn btn-primary btn-primary-append signup-append"><i class="fas fa-key"></i></span>
                                 </div>    
                             </div>
                             <div id="password-feedback" class="invalid-feedback mx-1" style="display: block"><?php echo $passwordErr;?></div>
