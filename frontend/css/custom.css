@@ -296,6 +296,10 @@ a.active {
     background-color: #130523;
 }
 
+.signup-append {
+    cursor: default !important;
+}
+
 /* width */
 ::-webkit-scrollbar {
 	width: 5px;
